@@ -19,7 +19,4 @@ public class SecurityConfig {
         return chainBuilder.build();
     }
 
-    // CLIENT_ID=30ba36ad4344bcb356f6
-    // CLIENT_SECRET=b32fea03c6820f43f53604ef06134e993a030462
-
 }
