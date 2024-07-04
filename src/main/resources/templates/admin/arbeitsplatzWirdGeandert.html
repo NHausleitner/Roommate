@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Arbeitsplatz Verändern</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+    <h1>Arbeitsplatz Verändern</h1>
+</header>
+
+<p th:object="${arbeitsplatz}">Das ist der Arbeitsplatz mit der ID <span th:text="*{id}"></span>. Dieser befindet sich im Raum <span th:text="*{raum}"></span>.</p>
+<p> Hier können Sie den Arbeitsplatz löschen: </p>
+<form th:object="${arbeitsplatz}" method="post" th:action="@{/admin/arbeitsplatzWirdGeandert/loeschen/{id}(id=*{id})}">
+    <button type="submit">Löschen</button>
+</form>
+
+<br>
+
+<p>Hier sehen Sie die verschiedenen Ausstattungen des Arbeitsplatzes. Sie können diese löschen oder eine bzw. mehrere hinzufügen:</p>
+<table>
+    <thead>
+    <tr>
+        <th>Ausstattung</th>
+        <th>Spezifikation</th>
+        <th>Löschen?</th>
+    </tr>
+    </thead>
+    <tbody th:remove="all-but-first">
+    <tr th:each="ausstattung : ${arbeitsplatz.ausstattungen()}" th:object="${ausstattung}">
+        <td><span th:text="*{name}">Name</span></td>
+        <td><span th:text="*{spezifikation}">keine Spezifikation</span></td>
+        <td>
+            <form th:object="${arbeitsplatz}" method="post" th:action="@{/admin/arbeitsplatzWirdGeandert/loeschen/arbeitsplatz/{arbeitsplatzId}/ausstattung/{ausstattungName}/{ausstattungSpezifikation}(arbeitsplatzId=${arbeitsplatz.id()}, ausstattungName=${ausstattung.name()}, ausstattungSpezifikation=${ausstattung.spezifikation()})}">
+                <button type="submit">Löschen</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<p>Ausstattung hinzufügen:</p>
+<form th:object="${arbeitsplatz}" method="post" th:action="@{/admin/arbeitsplatzWirdGeandert/{arbeitsplatzId}(arbeitsplatzId=*{id})}">
+    <div>
+        <label for="ausstattung"> Ausstattung:</label>
+        <input type="text" id="ausstattung" name="ausstattung" placeholder="z.B.: Monitor">
+    </div>
+    <div>
+        <label for="spezifikation"> Spezifikation:</label>
+        <input type="text" id="spezifikation" name="spezifikation" placeholder="z.B.: HDMI">
+    </div>
+    <br>
+    <button>Hinzufügen</button>
+</form>
+
+<br>
+
+<p th:if="${ausstattungGeloescht}">Die Ausstattung wurde erfolgreich gelöscht. Sie können nun weitere Ausstattungen ändern.</p>
+<p th:if="${ausstattungHinzugefuegt}">Die Ausstattung wurde erfolgreich hinzugefügt. Sie können nun weitere Ausstattungen ändern.</p>
+<p th:if="${ausstattungNichtHinzugefuegt}">Die Ausstattung wurde nicht hinzugefügt, da die Eingabefelder leer sind.</p>
+<p th:if="${ausstattungNichtVorhanden}">Die Ausstattung wurde nicht hinzugefügt, da diese Ausstattung bereits zu diesem Arbeitsplatz hinzugefügt wurde.</p>
+
+<br>
+<form method="get" th:action="@{/admin/arbeitsplatzAendern}">
+    <button>Zurück</button>
+</form>
+
+</body>
+</html>

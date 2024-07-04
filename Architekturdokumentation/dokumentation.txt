@@ -1,0 +1,66 @@
+1. Einführung und Ziele
+Die Anwendung "RoomMate" wird entwickelt, um den steigenden Platzmangel im Informatik-Bereich der Universität zu bewältigen. Die Hauptziele der Anwendung sind zum einen
+die effiziente Nutzung von Büroplätzen und deren Ausstattungen. Zum anderen sollen die Mitarbeiter die von den Admins erstellten Arbeitsplätze für bestimmte Zeiträume
+reservieren können. Die Admins können sowohl die Arbeitsplätze als auch die Reservierungen im Nachhinein bearbeiten. Hierbei sollen sowohl die User als auch die Admins
+die Arbeitsplätze und Reservierungen parallel auswählen bzw. bearbeiten können. Die User und die Admins benutzen dieses System und sollten nie auf Probleme oder Fehler
+stoßen, da dies große Verwirrungen stiften kann. Die Leitung des Informatik-Fachbereiches (Universitätsverwaltung) erwartet eine funktionierendes und effizientes System.
+Das Entwicklerteam besteht aus 3 Leuten, die gemeinsam am Projekt arbeiten.
+
+2. Randbedingungen
+- Java (21) wird als Programmiersprache verwendet
+- HTML und CSS werden für die Webentwicklung benutzt
+- Als Datenbanken wird PostgreSQL benutzt
+
+3. Kontextabgrenzungen
+UML:
+@startuml
+actor User
+actor Admin
+component System
+component Datenbank
+System -- Datenbank : kommuniziert mit
+User --> System : Arbeitsplatz reservieren
+Admin -> System: Arbeitsplatz erstellen/bearbeiten/löschen
+@enduml
+Bild dazu im Ordner "Architekturdokumentation"
+
+4. Lösungsstrategie
+- Es wird in einem Monolithen gearbeitet
+- Die Funktionalitäten des Codes werden durch Tests geprüft
+- Das Projekt wird in einer Onion Architektur implementiert
+- Die Klasse "Arbeitsplatz" ist ein Root-Objekt
+- Die Benennung von Klassen, Variablen, Methoden, usw. ist auf Deutsch
+
+5. Bausteinschicht
+UML:
+@startuml
+component RoomMateService
+component Arbeitsplatz
+component Ausstattung
+component ArbeitsplatzRepository
+component Web
+component Security
+RoomMateService --> ArbeitsplatzRepository
+Arbeitsplatz --> Ausstattung
+ArbeitsplatzRepository --> Arbeitsplatz
+@enduml
+Bild dazu im Ordner "Architekturdokumentation"
+Erläuterung:
+Der Service verwendet das Repository-Interface, um Instanzen der Klasse Arbeitsplatz aus der Datenbank zu laden. die Implementierung des Interfaces lassen wir uns von
+Spring Data erzeugen. Jedes Arbeitsplatz-Objekt verwaltet eine Liste von Ausstattungen. In "Web" ist der WebController enthalten. In "Security" ist alles, was für die
+Security benötigt wird
+
+6. Laufzeitschicht
+7. Verteilungsschicht
+8. Querschnittliche Konzepte
+9. Entwurfsentscheidungen
+
+10. Qualitätsanforderungen
+Beispiele für Szenarien für das Benutzen des Systems:
+Beispiel für Suchanfragen wären:
+- Platz mit einem Monitor, der einen USB-C Anschluss hat am Donnerstag, den 16.11.2023 zwischen 09:00 und 17:30 Uhr
+- Platz mit einem HDMI Monitor für zwei Stunden jeden Dienstag
+- Irgendein Platz am 16.11.2023 zwischen 14:00 und 16:00 Uhr
+
+11. Risiken und technische Schulden
+12. Glossar

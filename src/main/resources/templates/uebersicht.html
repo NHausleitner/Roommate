@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>RoomMate</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+    <h1>Willkommen bei RoomMate!</h1><br>
+</header>
+
+
+<section id="Adminseite">
+<form method="get" th:action="@{/admin/adminseite}">
+    <button th:if="${istAdmin}" type="submit" class="btn btn-primary">Adminseite</button>
+</form>
+</section>
+<br>
+
+<section id="Suche">
+    <h2>Platzsuche</h2><br>
+    <form method="post" th:action="@{/uebersicht}">
+        <!-- Ein grober Platzhalter -->
+        <div>
+            <label for="ausstattung">Ausstattung:</label>
+            <input type="text" id="ausstattung" name="ausstattung" placeholder="z.B. Monitor, USB-C">
+        </div>
+
+        <div>
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" name="datum">
+        </div>
+
+        <div>
+            <label for="startzeit">Startzeit:</label>
+            <input type="time" id="startzeit" name="startzeit">
+            <label for="endzeit">Endzeit</label>
+            <input type="time" id="endzeit" name="endzeit">
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn btn-primary">Suchen</button>
+    </form>
+</section><br>
+
+
+<section id="Suchergebnisse">
+    <h3>Suchergebnisse</h3>
+
+    <!-- Hier würden die Suchergebnisse angezeigt werden -->
+    Raum abc, blablabla
+    <br><br><br><br><br><br>
+</section>
+
+
+<footer>
+    <p>&copy; 2023 RoomMate - Entwickelt von JiggyJavaJugguJackson</p>
+</footer>
+
+</body>
+</html>

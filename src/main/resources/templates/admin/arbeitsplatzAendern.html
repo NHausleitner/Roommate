@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Arbeitsplatzänderung</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+<h1>Arbeitsplatz Ändern</h1>
+</header>
+
+<br>
+<p>Hier sehen Sie alle Arbeitsplätze:</p>
+<br>
+
+<table>
+    <thead>
+    <tr>
+        <th>Raum</th>
+        <th>Ändern?</th>
+    </tr>
+    </thead>
+    <tbody th:remove="all-but-first">
+    <tr th:each="arbeitsplatz : ${alleArbeitsplaetze}" th:object="${arbeitsplatz}">
+        <td><span th:text="*{raum}">11.11.11</span></td>
+        <td><a th:href="@{/admin/arbeitsplatzWirdGeandert/{arbeitsplatzId}(arbeitsplatzId=*{id})}">Ändern</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+    <p th:if="${arbeitsplatzGeloescht}">Der Arbeitsplatz wurde erfolgreich gelöscht. Sie können nun weitere Arbeitsplätze ändern.</p>
+
+<br>
+
+<section id="Adminseite">
+    <form method="get" th:action="@{/admin/adminseite}">
+        <button type="submit" class="btn btn-primary">Adminseite</button>
+    </form>
+</section>
+
+</body>
+</html>

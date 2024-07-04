@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    password: ${DATENBANK_PASSWORT}
+    username: roommate
+    url: jdbc:postgresql://localhost:5432/roommate
+  flyway:
+    baseline-on-migrate: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            scope: read:public_repo
+
+admins:
+  - NHausleitner
+  - Paulstrz
+  - Tim09050

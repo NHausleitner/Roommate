@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Adminseite</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+    <h1> Wählen Sie aus, was Sie machen möchten! </h1>
+</header>
+<br>
+<form method="get" th:action="@{/admin/arbeitsplatzErstellen}">
+    <button>Neuen Arbeitsplatz erstellen</button>
+</form>
+<br>
+<form method="get" th:action="@{/admin/arbeitsplatzAendern}">
+    <button>Arbeitsplatz ändern</button>
+</form>
+<br>
+<form method="get" th:action="@{/admin/reservierungAendern}">
+    <button>Reservierung ändern</button>
+</form>
+<br>
+<form method="get" th:action="@{/uebersicht}">
+    <button>Zurück zur Übersicht</button>
+</form>
+</body>
+</html>

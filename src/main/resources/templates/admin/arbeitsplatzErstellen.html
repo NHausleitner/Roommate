@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Arbeitsplatz erstellen</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+    <h1>Arbeitsplatzerstellung</h1>
+</header>
+
+<br>
+
+<section id="Erstellung">
+    <h2>Arbeitsplatz erstellen</h2>
+    <form method="post" th:action="@{/admin/arbeitsplatzErstellen}">
+
+        <div>
+            <label for="raum"> Raum:</label>
+            <input type="text" id="raum" name="raum" placeholder="z.B.: 25.13.22">
+        </div>
+        <br>
+        <div>
+            <label for="ausstattung1"> Ausstattung 1:</label>
+            <input type="text" id="ausstattung1" name="ausstattung1" placeholder="z.B.: Monitor">
+        </div>
+        <div>
+            <label for="spezifikation1"> Spezifikation 1:</label>
+            <input type="text" id="spezifikation1" name="spezifikation1" placeholder="z.B.: HDMI">
+        </div>
+        <br>
+        <div>
+            <label for="ausstattung2"> Ausstattung 2:</label>
+            <input type="text" id="ausstattung2" name="ausstattung2" placeholder="z.B.: Drucker">
+        </div>
+        <div>
+            <label for="spezifikation2"> Spezifikation 2:</label>
+            <input type="text" id="spezifikation2" name="spezifikation2" placeholder="z.B.: Farbe">
+        </div>
+        <br>
+        <div>
+            <label for="ausstattung3"> Ausstattung 3:</label>
+            <input type="text" id="ausstattung3" name="ausstattung3" placeholder="z.B.: Monitor">
+        </div>
+        <div>
+            <label for="spezifikation3"> Spezifikation 3:</label>
+            <input type="text" id="spezifikation3" name="spezifikation3" placeholder="z.B.: USB-C Anschluss">
+        </div>
+        <br>
+        <div>
+            <label for="ausstattung4"> Ausstattung 4:</label>
+            <input type="text" id="ausstattung4" name="ausstattung4" placeholder="z.B.: Maus">
+        </div>
+        <div>
+            <label for="spezifikation4"> Spezifikation 4:</label>
+            <input type="text" id="spezifikation4" name="spezifikation4" placeholder="z.B.: Bluetooth">
+        </div>
+        <br>
+        <div>
+            <label for="ausstattung5"> Ausstattung 5:</label>
+            <input type="text" id="ausstattung5" name="ausstattung5" placeholder="z.B.: Tastatur">
+        </div>
+        <div>
+            <label for="spezifikation5"> Spezifikation 5:</label>
+            <input type="text" id="spezifikation5" name="spezifikation5" placeholder="z.B.: leer">
+        </div>
+        <br>
+        <button>Erstellen</button>
+    </form>
+    <br>
+    <p th:if="${arbeitsplatzFalsch}">Eingabe ungültig! Bitte geben Sie einen Raum an.</p>
+    <p th:if="${arbeitsplatzRichtig}">Der Arbeitsplatz wurde erfolgreich erstellt! Wenn Sie möchten, erstellen Sie einen weiteren.</p>
+    <p th:if="${ausstattungNameLeer}">Mindestens eine Ausstattung wurde nicht hinzugefügt, weil der Ausstattungsname leer war.</p>
+</section>
+
+<br>
+
+<section id="Adminseite">
+    <form method="get" th:action="@{/admin/adminseite}">
+        <button type="submit" class="btn btn-primary">Adminseite</button>
+    </form>
+</section>
+
+</body>
+</html>
